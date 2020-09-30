@@ -5,7 +5,7 @@ Ultimate TicTacToe is a game I made that is just like normal TicTacToe. The only
 
 This game can be played with a friend, or by yourself. 
 
-[Play Now] (https://tictactoe-ultimate.juliehu2.repl.run)
+[Play Now](https://tictactoe-ultimate.juliehu2.repl.run)
 
 Here is what it looks like in the terminal:
 
