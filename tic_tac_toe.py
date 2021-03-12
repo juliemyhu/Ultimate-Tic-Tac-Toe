@@ -1,26 +1,8 @@
-# welcome message
-# Start Game:
-# ask player for board (n)
-# create board
-# print tic tac toe board 
-# Ask Player #1 to give us a spot 
-# Check if the game has been won (horizontal, vertical, diagonal)
-# Print the board with the spot taken
-# Ask Player #2 or computer move to give us coordinates for their spot
-# Check if the game has been won (horizontal, vertical, diagonal)
-# Print the board with the spot taken
-# Do these steps again and again until:
-# If someone wins, end the game and print ‘Winner!’
-# If the board is full, print “Tie!” """"
 
+import time
 import random 
 
-# A function that takes in as input an integer n and returns a board of size n x n
-# Meaning n rows with n elements inside each row. 
-# example: n = 3
-# Creates [[0, 1, 2],
-#          [3, 4, 5],
-#          [6, 7, 8]]
+"""function that takes in intager (n) and returns a board of size n"""
 def create_board_ultimate(n):
     board = []
     for row in range(0, n):
@@ -32,36 +14,19 @@ def create_board_ultimate(n):
             list.append(n * row + col + 1)
         board.append(list)
     return board
-#ex. if n = 3 it would loop through list 0,1,2,3
-# 3 * 0 + 0 + 1 = 1
-# 3 * 0 + 1 + 1 = 2
-# 3 * 0 + 2 + 1 = 3
-# 3 * 1 + 0 + 1 = 4
-# 3 * 1 + 1 + 1 = 5
-# 3 * 1 + 2 + 1 = 6
-# 3 * 2 + 0 + 1 = 7
-# 3 * 2 + 1 + 1 = 8
-# 3 * 2 + 2 + 1 = 9
 
-
-# A function that takes in any size board and prints it nicely
+"""A function that takes in any size board and prints it nicely""" 
 def print_board(board):
     n = len(board)
-    # We want to print each element of the list right?
     print(*board[0], sep = " | ")
+
     for i in range(1, n):
+        # print("----+" * (n))
         print("-" * (n - 1 + (3 * n - 1)))
         print(*board[i], sep = " | ")
-    """
-    for row in board:
-        print(row)
-    """
 
-# A function checks that the position is not x or o already.
+"""A function that checks that the position is not x or o already."""
 def check_move(move, board):
-    # Imagine move/position is 5 this means board[1][1] board[row][col]
-    # 5 - 1 this gives us 4
-    # 4
     n = len(board)
     row = (move - 1) // n
     col = (move - 1) % n
@@ -70,7 +35,7 @@ def check_move(move, board):
     else:
         return False
     
-# A function that takes in a string player and a board and updates player chosen location with player piece
+"""A function that takes in a string player and a board and updates player chosen location with player piece"""
 def make_move(player, board):
     next_player = ""
     if (player == "X"):
@@ -80,6 +45,7 @@ def make_move(player, board):
     n = len(board)
     while True:
         move = int(input("Where do you want to put your {}? ".format(player)))
+        time.sleep(.5)
         if move < 0 or move > n*n or check_move(move, board) == False:
             print("Invalid move. Try again.")
         else:
@@ -142,6 +108,7 @@ def make_move_computer(player, board):
         next_player = "X"
     n = len(board)
     while True:
+        time.sleep(.5)
         random_move = random.randint(1,n*n)
         if random_move < 0 or random_move > n*n or check_move(random_move, board) == False:
             print("Invalid move. Try again.")
@@ -150,7 +117,6 @@ def make_move_computer(player, board):
             col = (random_move - 1) % n
             board[row][col] = player
             print("Computer chose to move:{} ".format(random_move))
-            print_board(board)
             return board, random_move, next_player
 
 def num_players():
@@ -162,18 +128,7 @@ def num_players():
             return 2
         else:
             print("Not a valid number of players")
-"""            
-board = create_board_ultimate(3)
-print_board(board)
 
-print()
-board_2 = create_board_ultimate(9)
-print_board(board_2)
-
-print()
-#board = create_board_dynamic(4)
-#print_board(board)
-"""
 def ask_play_again():
   while True:
     play_again = input("Want to play again?: (Y/N) ")
